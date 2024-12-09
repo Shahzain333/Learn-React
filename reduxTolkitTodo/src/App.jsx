@@ -1,12 +1,12 @@
 import './App.css'
-import Todos from './components/todos'
-import AddTodo from './components/addTodo'
+import Todos from './components/Todos'
+import AddTodo from './components/AddTodo'
 
 function App() {
 
   return (
     <>
-      <AddTodo />
+      {/* <AddTodo currentTodo={currentTodo} setCurrentTodo={setCurrentTodo}/> */}
       <Todos />
     </>
   )
