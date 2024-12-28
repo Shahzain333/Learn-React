@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
-import { Header, Footer } from './components'
+//import { Header, Footer } from './components'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import { Outlet } from 'react-router-dom'
 import './App.css'
 
@@ -14,6 +16,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    
     authService.getCurrentUser()
     .then( (userData) => {
       
@@ -24,9 +27,13 @@ function App() {
       }
 
     })
+    .catch((error) => {
+      console.log('App :: useEffect :: error ', error)
+    })
     .finally( () => {
       setLoading(false);
     })
+  
   }, [])
 
   return !loading ? (
@@ -36,7 +43,7 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main>
-          TODO <Outlet />
+          <Outlet />
         </main>
         <Footer />
       </div>
